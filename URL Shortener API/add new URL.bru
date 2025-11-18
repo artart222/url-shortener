@@ -1,0 +1,24 @@
+meta {
+  name: add new URL
+  type: http
+  seq: 1
+}
+
+post {
+  url: 127.0.0.1:8000/api/shortener/
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "original_url": [
+      "djangoproject.com"
+    ]
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
