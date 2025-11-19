@@ -133,9 +133,9 @@ REST_FRAMEWORK = {
     # "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     # "PAGATION_PAGE_SIZE": 10,  # Number of items per page
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
-    # "DEFAULT_AUTHENTICATION_CLASSES": (
-    # "rest_framework_simplejwt.authentication.JWTAuthentication",
-    # ),
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+    "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
 }
 
 SPECTACULAR_SETTINGS = {
@@ -146,11 +146,11 @@ SPECTACULAR_SETTINGS = {
     "SWAGGER_UI_SETTINGS": {
         "deepLinking": True,
     },
-    # "SECURITY_DEFINITIONS": {
-    # "BearerAuth": {
-    # "type": "http",
-    # "scheme": "bearer",
-    # "bearerFormat": "JWT",
-    # }
-    # },
+    "SECURITY_DEFINITIONS": {
+    "BearerAuth": {
+    "type": "http",
+    "scheme": "bearer",
+    "bearerFormat": "JWT",
+    }
+    },
 }

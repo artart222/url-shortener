@@ -31,6 +31,9 @@ from drf_spectacular.views import (
     SpectacularSwaggerView,
 )
 
+from rest_framework_simplejwt import views as jwt_views
+
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path(
@@ -42,9 +45,7 @@ urlpatterns = [
     path(
         "api/analytics/", AnalyticsListView.as_view()
     ),  # GET endpoint to list all analytics records
-    path(
-        "api/analytics/<str:base62_code>/", AnalyticsCodeList.as_view()
-    ),
+    path("api/analytics/<str:base62_code>/", AnalyticsCodeList.as_view()),
     path(
         "api/shortener/url/<str:base62_code>/", ShortenerRetrieveURLView.as_view()
     ),  # GET endpoint to get details of a specific short URL
@@ -59,6 +60,12 @@ urlpatterns = [
         "api/schema/redoc/",
         SpectacularRedocView.as_view(url_name="schema"),
         name="redoc",
+    ),
+    path(
+        "api/token/", jwt_views.TokenObtainPairView.as_view(), name="token_obtain_pair"
+    ),
+    path(
+        "api/token/refresh/", jwt_views.TokenRefreshView.as_view(), name="token_refresh"
     ),
     path("<str:short_code>/", ShortenerRedirectView.as_view()),  # Redirect endpoint
 ]

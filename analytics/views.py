@@ -1,16 +1,19 @@
 from rest_framework.generics import ListAPIView
+from rest_framework.permissions import IsAuthenticated
 from .models import Analytics
 from .serializer import AnalyticsListViewSerializers
 
 
 # Create your views here.
 class AnalyticsListView(ListAPIView):
+    permission_classes = [IsAuthenticated]
     model = Analytics
     serializer_class = AnalyticsListViewSerializers
     queryset = Analytics.objects.all()
 
 
 class AnalyticsCodeList(ListAPIView):
+    permission_classes = [IsAuthenticated]
     model = Analytics
     serializer_class = AnalyticsListViewSerializers
 
