@@ -10,17 +10,20 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+from django.core.management.utils import get_random_secret_key
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-GEOIP_PATH = BASE_DIR / "geoip"
+GEOIP_PATH = BASE_DIR / "geoip" / "dbip-country-lite-2025-11.mmdb"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-9f7dvv__!g%0w(z+k7l$0ey41zsb$ru*8vu705a0)756o1##fm"
+# TODO: Check if keeping this is a problem or not.
+# SECRET_KEY = "django-insecure-9f7dvv__!g%0w(z+k7l$0ey41zsb$ru*8vu705a0)756o1##fm"
+SECRET_KEY = get_random_secret_key()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -44,7 +47,7 @@ INSTALLED_APPS = [
     "shortener",
     "drf_spectacular",
     "rest_framework",
-    "analytics"
+    "analytics",
 ]
 
 MIDDLEWARE = [
@@ -130,27 +133,25 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 REST_FRAMEWORK = {
-    # "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-    # "PAGATION_PAGE_SIZE": 10,  # Number of items per page
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_AUTHENTICATION_CLASSES": (
-    "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
 }
 
 SPECTACULAR_SETTINGS = {
-    # "TITLE": "Customic API",
-    # "DESCRIPTION": "مستندات API پروژه Customic",
     "SECURITY": [{"BearerAuth": []}],
     "COMPONENT_SPLIT_REQUEST": True,
     "SWAGGER_UI_SETTINGS": {
         "deepLinking": True,
     },
     "SECURITY_DEFINITIONS": {
-    "BearerAuth": {
-    "type": "http",
-    "scheme": "bearer",
-    "bearerFormat": "JWT",
-    }
+        "BearerAuth": {
+            "type": "http",
+            "scheme": "bearer",
+            "bearerFormat": "JWT",
+        }
     },
 }
+
+URL_SHORTENER_BASE = "127.0.0.1:8000/"
