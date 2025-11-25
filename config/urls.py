@@ -69,15 +69,3 @@ urlpatterns = [
     ),
     path("<str:short_code>/", ShortenerRedirectView.as_view()),  # Redirect endpoint
 ]
-
-
-""" Summary of API Endpoints:
-Done POST /api/shortener/url/ {original_url: ""}                     # create short url
-Done GET  /<code>/                        # redirect
-
-Done GET  /api/shortener/urls/                      # list all short urls
-Done GET  /api/shortener/url/<code>/               # details for a specific short url
-
-Done GET  /api/analytics/                 # list all analytics records
-GET  /api/analytics/<int:id>/        # get specific analytics record # TODO: implement this
-"""
