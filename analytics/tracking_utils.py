@@ -16,8 +16,6 @@ def get_client_ip(request):
     return ip
 
 
-# TODO: Complete this
-# This needs address to db
 # BUG: Why doesn't address of db directory work?
 def get_client_country(addr):
     print(
